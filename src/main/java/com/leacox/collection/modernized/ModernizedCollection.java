@@ -6,12 +6,13 @@ import java.lang.reflect.ParameterizedType;
 /**
  * @author John Leacox
  */
-public interface Collection<E> extends Iterable<E> {
+public interface ModernizedCollection<E> extends Iterable<E> {
   int size();
 
   @SuppressWarnings("unchecked")
   default E[] toArray() {
-    Class<E> clazz = (Class<E>) ((ParameterizedType) getClass().getGenericSuperclass()).getActualTypeArguments()[0];
+    Class<E> clazz = (Class<E>) ((ParameterizedType) getClass().getGenericSuperclass())
+        .getActualTypeArguments()[0];
     E[] array = (E[]) Array.newInstance(clazz, size());
 
     int index = 0;
